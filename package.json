@@ -1,0 +1,32 @@
+{
+  "name": "manna",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server-dist/index.js",
+    "start-dev": "nodemon --watch server-dist server-dist/index.js",
+    "build": "babel --watch ./server/ --retain-lines -d ./server-dist --copy-files"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AustinBahng/manna.git"
+  },
+  "author": "Austin Bahng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AustinBahng/manna/issues"
+  },
+  "homepage": "https://github.com/AustinBahng/manna#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "file-system": "^2.2.2",
+    "node-fetch": "^2.3.0",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^1.18.9"
+  }
+}
