@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server-dist/index.js",
     "start-dev": "nodemon --watch server-dist server-dist/index.js",
-    "build": "babel --watch ./server/ --retain-lines -d ./server-dist --copy-files"
+    "build": "babel ./server/ --retain-lines -d ./server-dist --copy-files",
+    "build-dev": "babel --watch ./server/ --retain-lines -d ./server-dist --copy-files"
   },
   "repository": {
     "type": "git",
