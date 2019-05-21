@@ -1,8 +1,11 @@
 import fetch from "node-fetch";
 import fs from "file-system";
 import request from "request";
+import db from "./../config.js";
 import dailyVerse from "./../../public/daily_verse.json";
 import dailyImage from "./../../public/daily_image.json";
+
+let conn;
 
 function setVerse() {
   fetch("https://beta.ourmanna.com/api/v1?format=json")
@@ -12,13 +15,26 @@ function setVerse() {
         reference: json.verse.details.reference,
         text: json.verse.details.text
       };
-      let str = JSON.stringify(verse);
-      let stream = fs.createWriteStream("public/daily_verse.json");
-      stream.once("open", function() {
-        stream.write(str);
-        stream.end();
-        console.log("daily verse updated");
-      });
+      conn = db.connect();
+
+      conn.execute(
+        "INSERT INTO daily_info (reference,verse) VALUES (?,?)",
+        [verse.reference, verse.text],
+        function(err) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("Updated Verse");
+          }
+        }
+      );
+      // let str = JSON.stringify(verse);
+      // let stream = fs.createWriteStream("public/daily_verse.json");
+      // stream.once("open", function() {
+      //   stream.write(str);
+      //   stream.end();
+      //   console.log("daily verse updated");
+      // });
     });
 }
 

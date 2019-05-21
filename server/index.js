@@ -1,3 +1,4 @@
+require("dotenv").config();
 import express from "express";
 import mainRoutes from "./routes/main";
 import dailyRoutes from "./routes/daily";
